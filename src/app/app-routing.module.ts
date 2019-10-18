@@ -1,3 +1,8 @@
+import { RegistroComponent } from './Pages/registro/registro.component';
+import { TutorComponent } from './Pages/tutor/tutor.component';
+import { ProfesorComponent } from './Pages/Profesor/Profesor.component';
+import { DireccionComponent } from './Pages/Direccion/Direccion.component';
+import { AbaoutComponent } from './Pages/abaout/abaout.component';
 import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -7,11 +12,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 
 
-
 const routes: Routes = [
   {path: 'Navbar', component: NavbarComponent},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
+  {path: 'abaout', component: AbaoutComponent},
+  {path: 'direccion', component: DireccionComponent},
+  {path: 'profesor', component: ProfesorComponent},
+  {path: 'tutor', component: TutorComponent},
+  {path: 'regisro', component: RegistroComponent},
   {path: '**', component: NopagefoundComponent}
 ];
 

@@ -1,0 +1,27 @@
+.titulo{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 40px;
+  color: #000;
+  margin-top: 10rem;
+}
+
+.mar{
+  margin-top: 4rem;
+}
+.mar1{
+  margin-top: 3rem;
+}
+.mv{
+  color: #000;
+  font-size: 30px;
+  font-family: 'Courier New', Courier, monospace;
+  align-items: center;
+}
+
+.text{
+  color: #000;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10px;
+
+
+}
