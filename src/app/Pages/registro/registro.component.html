@@ -1,53 +1,65 @@
-<section id="wrapper" class="login-register login-sidebar"
-  style="background-image:url(../../../../../assets/images/background/fondop1.jpg);">
+<section id="wrapper" class="login-register login-sidebar" style="background-image:url(../../../../../assets/images/background/fondop1.jpg)">
   <div class="login-box card">
     <div class="card-body">
+      <form ngNativeValidate [formGroup]="forma" (ngSubmit)="registrarUsuario()"  class="form-horizontal form-material" id="loginform"  align="center">
 
-      <form class="form-horizontal form-material" align="center">
-        <br><br><a href="javascript:void(0)" class="text-center db"><img src="../assets/images/io.png" alt="Home"
-            width="90px" /><br /><img src="../assets/images/logo-text.png" alt="Home" /></a>
-        <div class="form-group m-t-40">
+        <br><br>
+        <div class="form-group m-t-20">
           <div class="col-xs-12">
-              <br>
-            <input name="name" class="form-control" type="text" required placeholder="First Name">
+            <input formControlName="nombre" name="Nombre" class="form-control" type="text" required placeholder="Nombre">
           </div>
         </div>
         <div class="form-group">
           <div class="col-xs-12">
-            <input name="password" class="form-control" type="text" required placeholder="Last Name">
+            <input formControlName="apellido" name="LastName" class="form-control" type="text" required placeholder="LastName">
           </div>
         </div>
         <div class="form-group">
           <div class="col-xs-12">
-            <input name="password" class="form-control" type="text" required placeholder="User Name">
+            <input formControlName="direccion" name="Address" class="form-control" type="text" required placeholder="Address">
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group m-t-20">
             <div class="col-xs-12">
-              <input name="password" class="form-control" type="password" required placeholder="Password">
+              <input formControlName="correo" name="correo" class="form-control" type="email" required placeholder="Correo">
             </div>
           </div>
         <div class="form-group">
           <div class="col-xs-12">
-              <input name="password" class="form-control" type="email" required placeholder="Email">
+              <input formControlName="password" name="password" class="form-control" type="password" required placeholder="Password">
+            </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-12">
+              <input formControlName="password2" name="password2" class="form-control" type="password" required placeholder="ConfirmPassword"/>
             </div>
         </div>
         <div class="form-group">
             <div class="col-xs-12">
-                <input name="password" class="form-control" type="text" required placeholder="Student ID">
+                <input formControlName="matricula_alumno" name="StudentID" class="form-control" type="text" required placeholder="StudentID">
               </div>
           </div>
           <div class="form-group">
               <div class="col-xs-12">
-                  <input name="password" class="form-control" type="tel" required placeholder="Number Phone">
+                  <input formControlName="numero_telefono" name="NumberPhone" class="form-control" type="tel" required placeholder="NumberPhone">
                 </div>
-            </div><br><br>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-12">
+                  <input formControlName="edad" name="Age" class="form-control" type="number" required placeholder="Age">
+                </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-12">
+                  <input formControlName="genero" name="Gender" class="form-control" type="tel" required placeholder="Gender">
+                </div>
+            </div>
         <div class="form-group text-center m-t-20">
           <div class="col-xs-12">
-            <button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" type="submit"
-              (click)="login()">Registrar</button>
+            <button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" type="submit" [formGroup]="forma">Registrar</button>
           </div>
         </div>
+
 
       </form>
 

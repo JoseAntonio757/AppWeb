@@ -1,5 +1,166 @@
-<div class="mv" align="center">
-  <span>
-    Page Direccion
-  </span>
+<div class="mv4">
+    <mat-menu #appMenu="matMenu">
+        <button mat-menu-item (click)="veralumno()" >Consults</button>
+      </mat-menu>
+       <img src="../../../assets/images/icons.png" alt="menu" [matMenuTriggerFor]="appMenu" width="30px">
+
 </div>
+<div class="container mv1">
+  <mat-tab-group class="margen">
+
+    <mat-tab label="Alumnos">
+          <form ngNativeValidate [formGroup]="formaA" (ngSubmit)="registrarAlumnos()" class="form-horizontal form-material"
+          id="loginform">
+        <div class="container mv1" align="center">
+          <label class="ti"> Registro De Alumnos </label>
+          <div class="margin-form">
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="nombre" matNativeControl type="text" placeholder="FirstName" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="apellido" matNativeControl type="text" placeholder="LastName" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="domicilio" matNativeControl type="text" placeholder="Address" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="edad" matNativeControl type="number" placeholder="Age" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="matricula_alumno" matNativeControl type="text" placeholder="Student Enrollment" required>
+            </mat-form-field>
+          </div>
+          <div class="margin-form1">
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="numero_telefono" matNativeControl type="tel" placeholder="PhoneNumber" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="genero" matNativeControl type="text" placeholder="Gender Identity" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="correo" matNativeControl type="email" placeholder="Email" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="password" matNativeControl type="password" placeholder="Password" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="password2" matNativeControl type="password" placeholder="Confirmpassword" required>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 margin-botton">
+            <button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" type="submit" [formGroup]="formaA">Register
+              Student</button>
+          </div>
+        </div>
+    </form>
+    </mat-tab>
+
+    <mat-tab label="Profesores">
+      <form ngNativeValidate [formGroup]="formaP" (ngSubmit)="registrarProfesores()"
+        class="form-horizontal form-material" id="loginform">
+        <div class="container mv1" align="center">
+          <label class="ti"> Registro De Docentes </label>
+          <div class="margin-form">
+
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="nombre" matNativeControl type="text" placeholder="FirstName" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="apellido" matNativeControl type="text" placeholder="LastName" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="domicilio" matNativeControl type="text" placeholder="Address" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="licencia" matNativeControl type="text" placeholder="Cedula" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="matricula_profesor" matNativeControl type="text" placeholder="TeacherEnrollment"
+                required>
+            </mat-form-field>
+          </div>
+          <div class="margin-form1">
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="correo" matNativeControl type="email" placeholder="Eamil" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="password" matNativeControl type="Password" placeholder="password" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="password2" matNativeControl type="Password" placeholder="Confirmpassword"
+                required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="numero_telefono" matNativeControl type="tel" placeholder="PhoneNumbert" required>
+            </mat-form-field>
+
+          </div>
+          <div class="margin-form1">
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="edad" matNativeControl type="number" placeholder="Age" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width margin-input">
+              <input formControlName="genero" matNativeControl type="text" placeholder="Gender Identity" required>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 margin-botton">
+            <button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" type="submit"
+              [formGroup]="formaP">Register Teacher</button>
+          </div>
+        </div>
+      </form>
+    </mat-tab>
+
+    <mat-tab label="Directiva">
+        <form ngNativeValidate [formGroup]="formaD" (ngSubmit)="registrarDirectiva()" class="form-horizontal form-material"
+        id="loginform">
+      <div class="container mv1" align="center">
+        <label class="ti"> Registro De Directivos </label>
+        <div class="margin-form">
+          <mat-form-field class="example-full-width margin-input">
+            <input formControlName="nombre" matNativeControl type="text" placeholder="FirstName" required>
+          </mat-form-field>
+          <mat-form-field class="example-full-width margin-input">
+            <input formControlName="apellido" matNativeControl type="text" placeholder="LastName" required>
+          </mat-form-field>
+          <mat-form-field class="example-full-width margin-input">
+            <input formControlName="domicilio" matNativeControl type="text" placeholder="Address" required>
+          </mat-form-field>
+          <mat-form-field class="example-full-width margin-input">
+            <input formControlName="edad" matNativeControl type="number" placeholder="Age" required>
+          </mat-form-field>
+          <mat-form-field class="example-full-width margin-input">
+            <input formControlName="matricula_directiva" matNativeControl type="text" placeholder="DirectiveEnrollment" required>
+          </mat-form-field>
+        </div>
+        <div class="margin-form1">
+          <mat-form-field class="example-full-width margin-input">
+            <input formControlName="numero_telefono" matNativeControl type="tel" placeholder="PhoneNumbert" required>
+          </mat-form-field>
+          <mat-form-field class="example-full-width margin-input">
+            <input formControlName="correo" matNativeControl type="email" placeholder="Eamil" required>
+          </mat-form-field>
+          <mat-form-field class="example-full-width margin-input">
+            <input formControlName="password" matNativeControl type="Password" placeholder="password" required>
+          </mat-form-field>
+          <mat-form-field class="example-full-width margin-input">
+              <input formControlName="password2" matNativeControl type="Password" placeholder="Confirmpassword" required>
+            </mat-form-field>
+          <mat-form-field class="example-full-width margin-input">
+            <input formControlName="genero" matNativeControl type="text" placeholder="Gender Identity" required>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 margin-botton">
+          <button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" type="submit"  [formGroup]="formaD">Register
+            Directive</button>
+        </div>
+      </div>
+      </form>
+    </mat-tab>
+
+
+
+  </mat-tab-group>
+</div>
+
+

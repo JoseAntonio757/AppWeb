@@ -1,5 +1,9 @@
+import { Usuarios } from './../../models/usuarios.model';
+import { UsuarioService } from './../../services/usuario/usuario.service';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -8,38 +12,14 @@ import { Component, OnInit} from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  usuario = '';
+  correo = '';
   password = '';
-  usuarios = [
-    {
-      id: '1',
-      name: 'JoseAntonio',
-      password: '12345',
-      nivel: '2',
-      des: 'Docente'
-    },
-    {
-      id: '2',
-      name: 'Mariana ',
-      password: '12345',
-      nivel: '3',
-      des: 'Tutor'
-    },
-    {
-      id: '3',
-      name: 'Sandi',
-      password: '12345',
-      nivel: '1',
-      des: 'Direccion'
-    }
-  ];
+  id = 0;
+  usuarios: Usuarios[];
 
+  constructor(private roueter: Router, private servicio: UsuarioService) {
 
-
-
-  constructor(private roueter: Router) {
-
-   }
+  }
 
 
 
@@ -47,21 +27,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    if (this.usuario === 'Sandi' && this.password === 'sandi' ) {
-      console.log('nivel1');
-      this.roueter.navigate(['/direccion']);
-    }
+    console.log('fallo Uppsss!');
 
-    if (this.usuario === 'JoseAntonio' && this.password === 'joseantonio' ) {
-      this.roueter.navigate(['/profesor']);
-      console.log('nivel2');
-    }
+    return this.servicio.ValidaUsuario(this.id, this.correo, this.password).subscribe(correcto => this.usuarios = correcto );
 
-    if (this.usuario === 'Mariana' && this.password === 'mariana' ) {
-      this.roueter.navigate(['/tutor']);
-      console.log('nivel3');
-    }
-    console.log('Entro');
   }
 
   Registro() {

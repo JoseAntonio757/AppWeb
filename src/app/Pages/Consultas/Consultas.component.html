@@ -1,0 +1,379 @@
+<div class="mv4">
+  <mat-menu #appMenu="matMenu">
+    <button mat-menu-item (click)="register()">Register</button>
+  </mat-menu>
+  <img src="../../../assets/images/icons.png" alt="menu" [matMenuTriggerFor]="appMenu" width="30px">
+
+</div>
+<div class="container mv1">
+  <mat-tab-group>
+    <mat-tab label=Alumnos>
+      <button type="button" class="btn btn-link" (click)="AlumnosGet()">consult</button>
+      <div>
+        <mat-form-field>
+          <input matInput (keyup)="applyFilterAlumno($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+        <div class="row animated fadeIn" *ngIf="cargando">
+
+          <div class="col-sm-12">
+
+            <div class="alert alert-warning text-center">
+              <strong>Cargando</strong>
+              <br>
+              <i class="fa fa-refresh fa-spin fa2px"></i>
+              <br>
+              <span>Espere un momento por favor</span>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="mat-elevation-z8" class="row animated fadeIn" *ngIf="!cargando">
+          <table mat-table datasou [dataSource]="alumno">
+
+            <ng-container matColumnDef="id_alumnos">
+              <th mat-header-cell *matHeaderCellDef> Id </th>
+              <td mat-cell *matCellDef="let data"> {{data.id_alumnos}} </td>
+            </ng-container>
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td mat-cell *matCellDef="let data"> {{data.nombre}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <!-- Position Column -->
+            <ng-container matColumnDef="apellido">
+              <th mat-header-cell *matHeaderCellDef> Apellido </th>
+              <td mat-cell *matCellDef="let data"> {{data.apellido}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <!-- Position Column -->
+            <ng-container matColumnDef="domicilio">
+              <th mat-header-cell *matHeaderCellDef> Domicilio </th>
+              <td mat-cell *matCellDef="let data"> {{data.domicilio}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <!-- Position Column -->
+            <ng-container matColumnDef="edad">
+              <th mat-header-cell *matHeaderCellDef> Edad </th>
+              <td mat-cell *matCellDef="let data"> {{data.edad}} </td>
+            </ng-container>
+            <!-- Symbol Column -->
+            <!-- Position Column -->
+            <ng-container matColumnDef="matricula_alumno">
+              <th mat-header-cell *matHeaderCellDef> Matricula Alumno </th>
+              <td mat-cell *matCellDef="let data"> {{data.matricula_alumno}} </td>
+            </ng-container>
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="numero_telefono">
+              <th mat-header-cell *matHeaderCellDef> Telefono </th>
+              <td mat-cell *matCellDef="let data"> {{data.numero_telefono}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="jerarquia">
+              <th mat-header-cell *matHeaderCellDef> Jerarquia </th>
+              <td mat-cell *matCellDef="let data"> {{data.jerarquia}} </td>
+            </ng-container>
+            <ng-container matColumnDef="genero">
+              <th mat-header-cell *matHeaderCellDef> Genro </th>
+              <td mat-cell *matCellDef="let data"> {{data.genero}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="correo">
+              <th mat-header-cell *matHeaderCellDef> Email </th>
+              <td mat-cell *matCellDef="let data"> {{data.correo}} </td>
+            </ng-container>
+            <ng-container matColumnDef="password">
+              <th mat-header-cell *matHeaderCellDef> password </th>
+              <td mat-cell *matCellDef="let data"> {{data.password}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsAlumnos"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsAlumnos;"></tr>
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[1, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+
+    </mat-tab>
+
+    <mat-tab label=Profesores>
+      <button type="button" class="btn btn-link" (click)="ProfesoresGet()">consult</button>
+      <div>
+        <mat-form-field>
+          <input matInput (keyup)="applyFilterProfesor($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+        <div class="row animated fadeIn" *ngIf="cargando">
+
+          <div class="col-sm-12">
+
+            <div class="alert alert-warning text-center">
+              <strong>Cargando</strong>
+              <br>
+              <i class="fa fa-refresh fa-spin fa2px"></i>
+              <br>
+              <span>Espere un momento por favor</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="mat-elevation-z8" *ngIf="!cargando">
+          <table mat-table [dataSource]="profesor">
+
+            <ng-container matColumnDef="id_profesor">
+              <th mat-header-cell *matHeaderCellDef> Id </th>
+              <td mat-cell *matCellDef="let data"> {{data.id_profesor}} </td>
+            </ng-container>
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td mat-cell *matCellDef="let data"> {{data.nombre}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <!-- Position Column -->
+            <ng-container matColumnDef="apellido">
+              <th mat-header-cell *matHeaderCellDef> Apellido </th>
+              <td mat-cell *matCellDef="let data"> {{data.apellido}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <!-- Position Column -->
+            <ng-container matColumnDef="domicilio">
+              <th mat-header-cell *matHeaderCellDef> Domicilio </th>
+              <td mat-cell *matCellDef="let data"> {{data.domicilio}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="licencia">
+              <th mat-header-cell *matHeaderCellDef> Licencia </th>
+              <td mat-cell *matCellDef="let data"> {{data.licencia}} </td>
+            </ng-container>
+            <ng-container matColumnDef="matricula_profesor">
+              <th mat-header-cell *matHeaderCellDef> Matricula Alumno </th>
+              <td mat-cell *matCellDef="let data"> {{data.matricula_profesor}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="correo">
+              <th mat-header-cell *matHeaderCellDef> Email </th>
+              <td mat-cell *matCellDef="let data"> {{data.correo}} </td>
+            </ng-container>
+            <ng-container matColumnDef="password">
+              <th mat-header-cell *matHeaderCellDef> password </th>
+              <td mat-cell *matCellDef="let data"> {{data.password}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="numero_telefono">
+              <th mat-header-cell *matHeaderCellDef> Telefono </th>
+              <td mat-cell *matCellDef="let data"> {{data.numero_telefono}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="edad">
+              <th mat-header-cell *matHeaderCellDef> Edad </th>
+              <td mat-cell *matCellDef="let data"> {{data.edad}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="jerarquia">
+              <th mat-header-cell *matHeaderCellDef> Jerarquia </th>
+              <td mat-cell *matCellDef="let data"> {{data.jerarquia}} </td>
+            </ng-container>
+            <ng-container matColumnDef="genero">
+              <th mat-header-cell *matHeaderCellDef> Genro </th>
+              <td mat-cell *matCellDef="let data"> {{data.genero}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsProfesores"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsProfesores;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[1, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+
+    </mat-tab>
+
+    <mat-tab label=Directiva>
+      <button type="button" class="btn btn-link" (click)="DirectivaGet()">consult</button>
+      <div>
+        <mat-form-field>
+          <input matInput (keyup)="applyFilterDirectiva($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+        <div class="row animated fadeIn" *ngIf="cargando">
+
+          <div class="col-sm-12">
+
+            <div class="alert alert-warning text-center">
+              <strong>Cargando</strong>
+              <br>
+              <i class="fa fa-refresh fa-spin fa2px"></i>
+              <br>
+              <span>Espere un momento por favor</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="mat-elevation-z8" *ngIf="!cargando">
+          <table mat-table [dataSource]="directiva">
+
+            <ng-container matColumnDef="id_directiva">
+              <th mat-header-cell *matHeaderCellDef> Id </th>
+              <td mat-cell *matCellDef="let data"> {{data.id_directiva}} </td>
+            </ng-container>
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td mat-cell *matCellDef="let data"> {{data.nombre}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <!-- Position Column -->
+            <ng-container matColumnDef="apellido">
+              <th mat-header-cell *matHeaderCellDef> Apellido </th>
+              <td mat-cell *matCellDef="let data"> {{data.apellido}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <!-- Position Column -->
+            <ng-container matColumnDef="domicilio">
+              <th mat-header-cell *matHeaderCellDef> Domicilio </th>
+              <td mat-cell *matCellDef="let data"> {{data.domicilio}} </td>
+            </ng-container>
+            <ng-container matColumnDef="edad">
+              <th mat-header-cell *matHeaderCellDef> Edad </th>
+              <td mat-cell *matCellDef="let data"> {{data.edad}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="matricula_directiva">
+              <th mat-header-cell *matHeaderCellDef> Matricula Directiva </th>
+              <td mat-cell *matCellDef="let data"> {{data.matricula_directiva}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="numero_telefono">
+              <th mat-header-cell *matHeaderCellDef> Telefono </th>
+              <td mat-cell *matCellDef="let data"> {{data.numero_telefono}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="correo">
+              <th mat-header-cell *matHeaderCellDef> Email </th>
+              <td mat-cell *matCellDef="let data"> {{data.correo}} </td>
+            </ng-container>
+            <ng-container matColumnDef="password">
+              <th mat-header-cell *matHeaderCellDef> password </th>
+              <td mat-cell *matCellDef="let data"> {{data.password}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="jerarquia">
+              <th mat-header-cell *matHeaderCellDef> Jerarquia </th>
+              <td mat-cell *matCellDef="let data"> {{data.jerarquia}} </td>
+            </ng-container>
+            <ng-container matColumnDef="genero">
+              <th mat-header-cell *matHeaderCellDef> Genro </th>
+              <td mat-cell *matCellDef="let data"> {{data.genero}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsDirectiva"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsDirectiva;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[1, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+
+    </mat-tab>
+
+    <mat-tab label=Tutores>
+      <button type="button" class="btn btn-link" (click)="TutoresGet()">consult</button>
+      <div>
+        <mat-form-field>
+          <input matInput (keyup)="applyFilterTutor($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+        <div class="row animated fadeIn" *ngIf="cargando">
+
+          <div class="col-sm-12">
+
+            <div class="alert alert-warning text-center">
+              <strong>Cargando</strong>
+              <br>
+              <i class="fa fa-refresh fa-spin fa2px"></i>
+              <br>
+              <span>Espere un momento por favor</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="mat-elevation-z8" *ngIf="!cargando">
+          <table mat-table [dataSource]="tutor">
+
+            <ng-container matColumnDef="id_tutor">
+              <th mat-header-cell *matHeaderCellDef> Id </th>
+              <td mat-cell *matCellDef="let data"> {{data.id_tutor}} </td>
+            </ng-container>
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td mat-cell *matCellDef="let data"> {{data.nombre}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <!-- Position Column -->
+            <ng-container matColumnDef="apellido">
+              <th mat-header-cell *matHeaderCellDef> Apellido </th>
+              <td mat-cell *matCellDef="let data"> {{data.apellido}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <!-- Position Column -->
+            <ng-container matColumnDef="direccion">
+              <th mat-header-cell *matHeaderCellDef> Domicilio </th>
+              <td mat-cell *matCellDef="let data"> {{data.direccion}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="correo">
+              <th mat-header-cell *matHeaderCellDef> Email </th>
+              <td mat-cell *matCellDef="let data"> {{data.correo}} </td>
+            </ng-container>
+            <ng-container matColumnDef="password">
+              <th mat-header-cell *matHeaderCellDef> password </th>
+              <td mat-cell *matCellDef="let data"> {{data.password}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="matricula_alumno">
+              <th mat-header-cell *matHeaderCellDef> Matricula Alumno </th>
+              <td mat-cell *matCellDef="let data"> {{data.matricula_alumno}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="numero_telefono">
+              <th mat-header-cell *matHeaderCellDef> Telefono </th>
+              <td mat-cell *matCellDef="let data"> {{data.numero_telefono}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="edad">
+              <th mat-header-cell *matHeaderCellDef> Edad </th>
+              <td mat-cell *matCellDef="let data"> {{data.edad}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="jerarquia">
+              <th mat-header-cell *matHeaderCellDef> Jerarquia </th>
+              <td mat-cell *matCellDef="let data"> {{data.jerarquia}} </td>
+            </ng-container>
+            <ng-container matColumnDef="genero">
+              <th mat-header-cell *matHeaderCellDef> Genro </th>
+              <td mat-cell *matCellDef="let data"> {{data.genero}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsTutores"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsTutores;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[1, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+
+    </mat-tab>
+  </mat-tab-group>
+
+</div>
