@@ -1,9 +1,10 @@
+import { Usuarios } from './../../models/usuarios.model';
+import { Usuario } from './../../models/usuario.model';
 import { UsuarioService } from './../../services/usuario/usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Tutores } from '../../models/tutores.model';
-
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,6 +17,7 @@ export class RegistroComponent implements OnInit {
   jerarquia = 3;
   idtutor = null;
   alert = 'Upsss!!!!';
+  cargando = true;
   constructor(private usuarioservice: UsuarioService, private roueter: Router) { }
   sonIguales(campo1: string, campo2: string) {
 
@@ -73,7 +75,7 @@ export class RegistroComponent implements OnInit {
     if (this.forma.invalid) {
       Swal.fire(
         'Passwords must match',
-         this.alert,
+        this.alert,
         'error'
       );
       return;
@@ -91,9 +93,17 @@ export class RegistroComponent implements OnInit {
       this.jerarquia,
       this.forma.value.genero
     );
-    // const usuario = this.forma.value;
+    const usuario = new Usuario(
+      this.forma.value.nombre,
+      this.forma.value.apellido,
+      this.forma.value.correo,
+      this.forma.value.password,
+      this.forma.value.matricula_alumno,
+      this.jerarquia,
+
+    );
     this.usuarioservice.crearTutor(tutor).subscribe(resp => this.roueter.navigate['/login']);
-    //  this.usuarioservice.crearTutor(tutor);
-    // this.roueter.navigate(['/home']);
+    this.usuarioservice.CargarUsuarios(usuario).subscribe(resp => this.roueter.navigate['/login']);
+
   }
 }

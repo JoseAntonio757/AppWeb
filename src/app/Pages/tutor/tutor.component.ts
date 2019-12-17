@@ -1,11 +1,7 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { UsuarioService } from './../../services/usuario/usuario.service';
+import { Calificasiones } from './../../models/calificasiones';
+import { Component, OnInit } from '@angular/core';
 
-import * as jspdf from 'jspdf';
-import html2canvas from 'html2canvas';
-
-import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
-
-declare let pdfMake: any;
 
 @Component({
   selector: 'app-tutor',
@@ -14,8 +10,26 @@ declare let pdfMake: any;
 })
 export class TutorComponent implements OnInit {
   titulo = 'Generar PDF con Angular';
-  constructor() { }
+  cali: Calificasiones[];
+  id = 1;
+  calif = [
+    {
+      id: ' 1 ',
+      espanol: ' 1 ',
+      matematicas: ' 1 ',
+      artes: ' 1 ',
+      lectura: ' 1 ',
+      historia: ' 1 ',
+      educasionF: ' 1 '
+
+    }
+  ];
+  constructor(private Uservices: UsuarioService) { }
 
   ngOnInit() {
+    this.Uservices.CargarCalificasionesAlumno(this.id).subscribe((resp: any) => {
+      this.cali = resp;
+      console.log(this.cali);
+    });
   }
 }

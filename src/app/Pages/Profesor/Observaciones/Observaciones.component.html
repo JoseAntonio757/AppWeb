@@ -7,47 +7,20 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Alumnos</th>
-                <th scope="col">Bimestre 1</th>
+                <th scope="col">Matricula</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Observacion</th>
+                <th scope="col">Bimestre</th>
 
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Jose Antonio Ramirez Hernandez</td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>García García María </td>
-                <td></td>
-
-
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Hernández Hernández Francisco </td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>Sánchez Hernández Alejandro </td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <th scope="row">5</th>
-                <td>Hernández Hernández Mariana </td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <th scope="row">6</th>
-                <td>Ramirez Perez Sandra </td>
-                <td></td>
+              <tr *ngFor="let data of observaciones" >
+                <th scope="row"> {{data.id_alumno}} </th>
+                <td> {{data.matricula}} </td>
+                <td> {{data.nombre}} </td>
+                <td> {{data.observacion}} </td>
+                <td> {{data.bimestre}} </td>
 
               </tr>
             </tbody>
@@ -57,3 +30,16 @@
 
     </mat-tab-group>
   </div>
+
+  <div class="container">
+    <div class="input-group marginUpload">
+      <div class="input-group-prepend">
+        <span class="input-group-text mouse" id="inputGroupFileAddon01" (click)="UploadObservaciones()">Upload</span>
+      </div>
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="inputGroupFile01"
+          aria-describedby="inputGroupFileAddon01" (change)="FilechangeObservaciones($event)">
+        <label class="custom-file-label" for="inputGroupFile01">Observaciones</label>
+      </div>
+    </div>
+    </div>

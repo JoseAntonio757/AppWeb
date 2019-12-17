@@ -1,3 +1,4 @@
+import { Usuario } from './../../models/usuario.model';
 import { Directiva } from './../../models/directiva.model';
 import { Alumnos } from './../../models/alumnos.model';
 import { Profesores } from './../../models/profesores.model';
@@ -6,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-
 
 
 @Component({
@@ -18,8 +18,7 @@ export class DireccionComponent implements OnInit {
   formaP: FormGroup;
   formaA: FormGroup;
   formaD: FormGroup;
-
-  ver  = 1;
+  ver = 1;
 
   alert = 'Uppss!!!!';
   constructor(private roueter: Router, private crud: CrudService) { }
@@ -150,9 +149,18 @@ export class DireccionComponent implements OnInit {
       jerarquia,
       this.formaP.value.genero
     );
+    const usuario = new Usuario(
+      this.formaP.value.nombre,
+      this.formaP.value.apellido,
+      this.formaP.value.correo,
+      this.formaP.value.password,
+      this.formaP.value.matricula_profesor,
+      jerarquia,
+
+    );
 
     this.crud.crearProfesor(profesor).subscribe(resp => this.roueter.navigate['/direccion']);
-
+    this.crud.CargarUsuarios(usuario).subscribe(resp => this.roueter.navigate['/direccion']);
   }
 
   registrarAlumnos() {
@@ -178,9 +186,18 @@ export class DireccionComponent implements OnInit {
       this.formaA.value.correo,
       this.formaA.value.password
     );
+    const usuario = new Usuario(
+      this.formaA.value.nombre,
+      this.formaA.value.apellido,
+      this.formaA.value.correo,
+      this.formaA.value.password,
+      this.formaA.value.matricula_alumno,
+      jerarquia,
+
+    );
 
     this.crud.crearAlumnos(alumno).subscribe(resp => this.roueter.navigate['/direccion']);
-
+    this.crud.CargarUsuarios(usuario).subscribe(resp => this.roueter.navigate['/direccion']);
   }
 
   registrarDirectiva() {
@@ -206,14 +223,32 @@ export class DireccionComponent implements OnInit {
       jerarquia,
       this.formaD.value.genero
     );
+    const usuario = new Usuario(
+      this.formaD.value.nombre,
+      this.formaD.value.apellido,
+      this.formaD.value.correo,
+      this.formaD.value.password,
+      this.formaD.value.matricula_directiva,
+      jerarquia,
+
+    );
 
     this.crud.crearDirectiva(directiva).subscribe(resp => this.roueter.navigate['/direccion']);
-
+    this.crud.CargarUsuarios(usuario).subscribe(resp => this.roueter.navigate['/direccion']);
   }
 
   veralumno() {
     this.roueter.navigate(['/consultas']);
   }
+
+  update() {
+  this.roueter.navigate(['/update']);
+  }
+
+  Dhome() {
+    this.roueter.navigate(['/DHome']);
+  }
+
 
 
 }

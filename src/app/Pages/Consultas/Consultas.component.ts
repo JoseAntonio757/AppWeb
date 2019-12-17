@@ -83,6 +83,14 @@ export class ConsultasComponent implements OnInit {
 
   }
 
+  update() {
+    this.router.navigate(['/update']);
+  }
+
+  Dhome() {
+    this.router.navigate(['/DHome']);
+  }
+
   AlumnosGet() {
     this.cargando = true;
     this.servicesUsu.CargarAlumnos().subscribe((resp: any) => {
@@ -122,6 +130,7 @@ export class ConsultasComponent implements OnInit {
     });
 
   }
+
 
 
 }

@@ -57,24 +57,53 @@
         </button>
       </div>
       <div class="modal-body">
+          <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Nombre Alumno</span>
+              </div>
+              <input [(ngModel)]="nombre" type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm">
+            </div>
         <div class="input-group input-group-sm mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-sm">Matricula</span>
           </div>
-          <input type="text" class="form-control" aria-label="Sizing example input"
+          <input [(ngModel)]="matricula" type="text" class="form-control" aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-sm">
         </div>
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text">Descripcion</span>
           </div>
-          <textarea class="form-control" aria-label="With textarea"></textarea>
-        </div>
-      </div>
+          <textarea [(ngModel)]="descripcion" class="form-control" aria-label="With textarea"></textarea>
+        </div><br>
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+            </div>
+            <input [(ngModel)]="correo" type="text" class="form-control" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-sm">
+          </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-info">Save changes</button>
+        <button type="button" class="btn btn-info" (click)="Reporte()">Save changes</button>
       </div>
     </div>
   </div>
 </div>
+</div>
+
+<div class="container">
+<div class="input-group marginUpload">
+  <div class="input-group-prepend">
+    <span class="input-group-text mouse" id="inputGroupFileAddon01" (click)="Upload()">Upload</span>
+  </div>
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="inputGroupFile01"
+      aria-describedby="inputGroupFileAddon01" (change)="Filechange($event)">
+    <label class="custom-file-label" for="inputGroupFile01">Calificasiones</label>
+  </div>
+</div>
+</div>
+
+
